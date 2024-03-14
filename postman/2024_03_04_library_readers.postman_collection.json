@@ -1,0 +1,588 @@
+{
+	"info": {
+		"_postman_id": "49f4341b-c60c-4a53-99cd-d8777f931b1f",
+		"name": "library_readers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32567757"
+	},
+	"item": [
+		{
+			"name": "ReaderCard",
+			"item": [
+				{
+					"name": "Получение списка",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/readerCards/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"readerCards",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Получение списка",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/patients/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"patients",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Mar 2021 06:58:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"lastName\": \"петров\",\n        \"firstName\": \"петр\",\n        \"middleName\": \"петрович\",\n        \"birthDate\": \"13.06.1980\",\n        \"gender\": \"male\",\n        \"insuranceNumber\": \"160-722-773 54\",\n        \"receivedBooks\": []\n    },\n    {\n        \"id\": 1,\n        \"lastName\": \"Иванов\",\n        \"firstName\": \"Иван\",\n        \"middleName\": \"Иванович\",\n        \"birthDate\": \"14.05.1980\",\n        \"gender\": \"male\",\n        \"insuranceNumber\": \"160-722-773 54\",\n        \"receivedBooks\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Добавление",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"lastName\" : \"анатольев\",\n\t\"firstName\" : \"анатолий\",\n\t\"middleName\" : \"анатольевич\",\n\t\"birthDate\" : \"01.01.1990\",\n\t\"gender\" : \"male\",\n\t\"insuranceNumber\" : \"160-722-773 54\",\n    \"receivedBooks\": [\n        {\n            \"bookName\": \"Жюль Верн - Пятнадцатилетний капитан\",\n            \"returned\": \"N\",\n            \"dateBookReceived\": \"20.03.2020\"\n        },\n        {\n            \"bookName\": \"Жюль Верн - Пять недель на воздушном шаре\",\n            \"returned\": \"N\",\n            \"dateBookReceived\": \"20.03.2020\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/readerCards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"readerCards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"lastName\" : \"анатольев\",\n\t\"firstName\" : \"анатолий\",\n\t\"middleName\" : \"анатольевич\",\n\t\"birthDate\" : \"01.01.1992\",\n\t\"gender\" : \"male\",\n\t\"insuranceNumber\" : \"160-722-773 54\",\n    \"receivedBooks\": [\n        {\n            \"id\": 5,\n            \"bookName\": \"Жюль Верн - Пятнадцатилетний капитан\",\n            \"returned\": \"Y\",\n            \"dateBookReceived\": \"20.03.2020\"\n        },\n        {\n            \"id\": 6,\n            \"bookName\": \"Жюль Верн - Пять недель на воздушном шаре\",\n            \"returned\": \"Y\",\n            \"dateBookReceived\": \"20.03.2020\"\n        }\n    ]\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/readerCards/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"readerCards",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Natalie\",\n\t\"email\" : \"natalie@jr.com\",\n\t\"phone\" : \"+7 (191) 746-43-23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/readerCards/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"readerCards",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение карты читателя и списка полученных книг по идентификатору",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/readerCards/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"readerCards",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ReceivedBook",
+			"item": [
+				{
+					"name": "Добавление",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"bookName\" : \"Жюль Верн - Дети капитана Гранта\",\n\t\"returned\" : \"N\",\n\t\"dateBookReceived\" : \"23.03.2003\",\n    \"readerCardId\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/receivedBooks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"receivedBooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение по идентификатору",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/receivedBooks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"receivedBooks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"bookName\" : \"Жюль Верн - Путешествие к центру Земли\",\n\t\"returned\" : \"N\",\n\t\"dateBookReceived\" : \"23.03.2003\",\n    \"readerCardId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/receivedBooks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"receivedBooks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/receivedBooks/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"receivedBooks",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Authorization UserAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"oakyznetsov\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization (только для админа)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNjE1MzMxMTIwLCJleHAiOjE2MTUzMzQ3MjB9.rm9rMVLEbn62S_-6TBrh5JC_nMvgTguP5WYWG82zUHg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization (для всех)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYxNTMzNDQ0NSwiZXhwIjoxNjE1MzM4MDQ1fQ.3ljPElQuH2WP27KV68-L3IHPGHoVG9N0I0J1d6nqERc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization (для всех - список пациентов)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvYWt5em5ldHNvdiIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNjE1MzMwMTY5LCJleHAiOjE2MTUzMzM3Njl9.WFcU7rrsEmUeyc-chQ7wCUZzGo_-nD5G0iUkbFnfjKY"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/patients/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"patients",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Получение списка",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/patients/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"patients",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 09 Mar 2021 06:58:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"lastName\": \"петров\",\n        \"firstName\": \"петр\",\n        \"middleName\": \"петрович\",\n        \"birthDate\": \"13.06.1980\",\n        \"gender\": \"male\",\n        \"insuranceNumber\": \"160-722-773 54\",\n        \"receivedBooks\": []\n    },\n    {\n        \"id\": 1,\n        \"lastName\": \"Иванов\",\n        \"firstName\": \"Иван\",\n        \"middleName\": \"Иванович\",\n        \"birthDate\": \"14.05.1980\",\n        \"gender\": \"male\",\n        \"insuranceNumber\": \"160-722-773 54\",\n        \"receivedBooks\": []\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTcwOTgxMjIwMywiZXhwIjoxNzA5ODE1ODAzfQ.8qDuHs6yYhMWu8keCZ2s4JsB79rxlP2pVMpaZq0E30A",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

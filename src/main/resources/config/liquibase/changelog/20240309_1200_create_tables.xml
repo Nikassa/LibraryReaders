@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+  <changeSet id="1" author="dev">
+    <createTable schemaName="postgres" tableName="reader_card">
+      <column name="id" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="lastname" type="varchar"/>
+      <column name="firstname" type="varchar"/>
+      <column name="middlename" type="varchar"/>
+      <column name="birth_date" type="date"/>
+      <column name="gender" type="varchar"/>
+      <column name="insurance_number" type="varchar"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="2" author="dev">
+    <createTable schemaName="postgres" tableName="received_book">
+      <column name="id" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="book_name" type="varchar"/>
+      <column name="returned" type="varchar(1)"/>
+      <column name="date_book_received" type="date"/>
+      <column name="reader_card_id" type="bigint"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="3" author="dev">
+    <!--    <validCheckSum>ANY</validCheckSum>-->
+    <createSequence sequenceName="received_books_id_seq" schemaName="postgres" startValue="5" incrementBy="1"/>
+  </changeSet>
+
+  <changeSet id="4" author="dev">
+    <!--    <validCheckSum>ANY</validCheckSum>-->
+    <createSequence sequenceName="reader_cards_id_seq" schemaName="postgres" startValue="3" incrementBy="1"/>
+  </changeSet>
+
+  <changeSet id="5" author="dev">
+    <addForeignKeyConstraint  baseColumnNames="reader_card_id"
+                              baseTableCatalogName="postgres"
+                              baseTableName="received_book"
+                              constraintName="fk_received_book_reader_card"
+                              referencedColumnNames="id"
+                              referencedTableCatalogName="postgres"
+                              referencedTableName="reader_card"/>
+  </changeSet>
+
+</databaseChangeLog>

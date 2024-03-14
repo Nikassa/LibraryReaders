@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ALL" monitorInterval="120">
+
+    <!-- Logging Properties -->
+    <Properties>
+        <Property name="LOG_PATTERN">
+            [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+        </Property>
+        <Property name="APP_LOG_ROOT">
+            ./logs
+        </Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <RollingFile name="ReaderCardDebugLogs" fileName="${APP_LOG_ROOT}/readerCard-log.log"
+                     filePattern="${APP_LOG_ROOT}/readerCard-log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="ReceivedBookDebugLogs" fileName="${APP_LOG_ROOT}/receivedBook-log.log"
+                     filePattern="${APP_LOG_ROOT}/receivedBook-log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="AuthDebugLogs" fileName="${APP_LOG_ROOT}/auth-log.log"
+                     filePattern="${APP_LOG_ROOT}/auth-log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="TraceLogs" fileName="${APP_LOG_ROOT}/trace-log.log"
+                     filePattern="${APP_LOG_ROOT}/trace-log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="DebugLogs" fileName="${APP_LOG_ROOT}/debug-log.log"
+                     filePattern="${APP_LOG_ROOT}/debug-log-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="ReaderCardController" level="DEBUG">
+            <AppenderRef ref="ReaderCardDebugLogs"/>
+        </Logger>
+
+        <Logger name="ReceivedBookController" level="DEBUG">
+            <AppenderRef ref="ReceivedBookDebugLogs"/>
+        </Logger>
+
+        <Logger name="UserServiceImpl" level="DEBUG">
+            <AppenderRef ref="AuthDebugLogs"/>
+        </Logger>
+
+        <Logger name="JwtUserDetailsService" level="DEBUG">
+            <AppenderRef ref="AuthDebugLogs"/>
+        </Logger>
+
+        <Root level="TRACE">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="TraceLogs"/>
+            <AppenderRef ref="DebugLogs" level="DEBUG"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="8" author="dev">
+        <createTable schemaName="postgres" tableName="users">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar">
+                <constraints unique="true"/>
+            </column>
+            <column name="firstname" type="varchar"/>
+            <column name="lastname" type="varchar"/>
+            <column name="email" type="varchar"/>
+            <column name="password" type="varchar"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+            <column name="status" type="varchar" defaultValue="ACTIVE"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="9" author="dev">
+        <createTable schemaName="postgres" tableName="roles">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="created" type="timestamp"/>
+            <column name="updated" type="timestamp"/>
+            <column name="status" type="varchar" defaultValue="ACTIVE"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="10" author="dev">
+        <createTable schemaName="postgres" tableName="user_roles">
+            <column name="user_id" type="bigint"/>
+            <column name="role_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="11" author="dev">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_roles"
+                                 constraintName="fk_user_roles_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="12" author="dev">
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="user_roles"
+                                 constraintName="fk_user_roles_roles"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="roles"/>
+    </changeSet>
+
+    <changeSet id="13" author="dev">
+        <sql>
+            insert into postgres.users
+            values (1, 'oakyznetsov', 'oakyznetsov@gmail.com', 'Oleg', 'Kyznetsov',
+            '$2a$04$NJpYluSwYHPhHuaansQ17.HryoS/GrD1XjxQSak0qzr44Q5ttf7Im', '2021-03-05', '2021-03-05', 'ACTIVE'),
+            (2, 'user', 'user@gmail.com', 'User', 'User',
+            '$2a$04$NJpYluSwYHPhHuaansQ17.HryoS/GrD1XjxQSak0qzr44Q5ttf7Im', '2021-03-05', '2021-03-05', 'ACTIVE'),
+            (3, 'admin', 'admin@gmail.com', 'Admin', 'Admin',
+            '$2a$04$NJpYluSwYHPhHuaansQ17.HryoS/GrD1XjxQSak0qzr44Q5ttf7Im', '2021-03-05', '2021-03-05', 'ACTIVE')
+            ;
+        </sql>
+        <sql>
+            insert into postgres.roles
+            values (1, 'ROLE_USER', '2021-03-05', '2021-03-05', 'ACTIVE'),
+            (2, 'ROLE_ADMIN', '2021-03-05', '2021-03-05', 'ACTIVE');
+        </sql>
+        <sql>
+            insert into postgres.user_roles
+            values (1, 1),
+            (1, 2),
+            (2, 1),
+            (3, 2);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

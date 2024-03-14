@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.6.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>ru.my.task</groupId>
+  <artifactId>libraryreaders</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>libraryreaders</name>
+  <description>Test Task</description>
+
+  <properties>
+    <!-- Build properties -->
+    <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <profile.swagger/>
+
+    <!--    <spring-boot.version>2.1.6.RELEASE</spring-boot.version>-->
+
+    <!-- Dependency versions -->
+    <swagger-ui.version>2.9.2</swagger-ui.version>
+
+    <!-- The javassist version should match the one managed by
+        https://mvnrepository.com/artifact/org.hibernate/hibernate-core/${hibernate.version} -->
+    <!--    <javassist.version>3.22.0-GA</javassist.version>-->
+
+    <!-- The liquibase version should match the one managed by
+        https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies/${spring-boot.version} -->
+    <liquibase.version>3.5.5</liquibase.version>
+    <!--    <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>-->
+    <!--    <validation-api.version>2.0.1.Final</validation-api.version>-->
+    <log4j.version>2.12.1</log4j.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.10</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.1.2.Final</version>
+    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>org.hibernate</groupId>-->
+    <!--      <artifactId>hibernate-core</artifactId>-->
+    <!--      <version>4.1.4.Final</version>-->
+    <!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>org.hibernate</groupId>-->
+    <!--      <artifactId>hibernate-entitymanager</artifactId>-->
+    <!--      <version>5.2.3.Final</version>-->
+    <!--    </dependency>-->
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger-ui.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-bean-validators</artifactId>
+      <version>${swagger-ui.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${swagger-ui.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+      <version>1.4.194</version>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.4.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>org.apache.tomcat</groupId>-->
+    <!--      <artifactId>tomcat-catalina</artifactId>-->
+    <!--      <version>8.5.55</version>-->
+    <!--    </dependency>-->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>1.10.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${liquibase.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.8.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!--      <plugin>-->
+      <!--        <groupId>org.liquibase</groupId>-->
+      <!--        <artifactId>liquibase-maven-plugin</artifactId>-->
+      <!--        <version>${liquibase.version}</version>-->
+      <!--        <dependencies>-->
+      <!--          <dependency>-->
+      <!--            <groupId>org.javassist</groupId>-->
+      <!--            <artifactId>javassist</artifactId>-->
+      <!--            <version>${javassist.version}</version>-->
+      <!--          </dependency>-->
+      <!--          <dependency>-->
+      <!--            <groupId>org.liquibase.ext</groupId>-->
+      <!--            <artifactId>liquibase-hibernate5</artifactId>-->
+      <!--            <version>${liquibase-hibernate5.version}</version>-->
+      <!--          </dependency>-->
+      <!--          <dependency>-->
+      <!--            <groupId>org.springframework.boot</groupId>-->
+      <!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
+      <!--            <version>${spring-boot.version}</version>-->
+      <!--          </dependency>-->
+      <!--          <dependency>-->
+      <!--            <groupId>javax.validation</groupId>-->
+      <!--            <artifactId>validation-api</artifactId>-->
+      <!--            <version>${validation-api.version}</version>-->
+      <!--          </dependency>-->
+      <!--        </dependencies>-->
+      <!--      </plugin>-->
+    </plugins>
+  </build>
+</project>
