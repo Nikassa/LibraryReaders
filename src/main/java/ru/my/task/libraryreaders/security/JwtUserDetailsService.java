@@ -3,6 +3,7 @@ package ru.my.task.libraryreaders.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +14,7 @@ import ru.my.task.libraryreaders.security.jwt.JwtUserFactory;
 import ru.my.task.libraryreaders.service.auth.UserService;
 
 @Service
+@Lazy
 public class JwtUserDetailsService implements UserDetailsService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());

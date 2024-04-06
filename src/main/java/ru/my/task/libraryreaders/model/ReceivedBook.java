@@ -33,7 +33,7 @@ public class ReceivedBook {
     private String returned;
 
     @ApiModelProperty("Дата получения книги")
-    @Column(name = "date_book_received")
+    @Column(name = "date_book_received", columnDefinition = "DATE")
     @JsonFormat(pattern = "dd.MM.yyyy")
     private Date dateBookReceived;
 

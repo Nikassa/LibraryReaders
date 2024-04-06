@@ -43,11 +43,11 @@
 
   <changeSet id="5" author="dev">
     <addForeignKeyConstraint  baseColumnNames="reader_card_id"
-                              baseTableCatalogName="postgres"
+                              baseTableSchemaName="postgres"
                               baseTableName="received_book"
                               constraintName="fk_received_book_reader_card"
                               referencedColumnNames="id"
-                              referencedTableCatalogName="postgres"
+                              referencedTableSchemaName="postgres"
                               referencedTableName="reader_card"/>
   </changeSet>
 

@@ -35,7 +35,7 @@ public class ReaderCard {
     @Column(name = "middlename")
     private String middleName;
 
-    @Column(name = "birth_date")
+    @Column(name = "birth_date", columnDefinition = "DATE")
     private Date birthDate;
 
     @Pattern(regexp = "male|female")
