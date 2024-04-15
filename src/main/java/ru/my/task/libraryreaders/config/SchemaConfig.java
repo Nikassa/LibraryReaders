@@ -2,8 +2,6 @@ package ru.my.task.libraryreaders.config;
 
 import liquibase.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -18,8 +16,6 @@ import java.sql.Statement;
 @Configuration
 public class SchemaConfig implements BeanPostProcessor {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
-
     @Value("${spring.liquibase.liquibase-schema}")
     private String schemaName;
 
@@ -29,7 +25,7 @@ public class SchemaConfig implements BeanPostProcessor {
             DataSource dataSource = (DataSource) bean;
             try (Connection conn = dataSource.getConnection();
                  Statement statement = conn.createStatement()) {
-                logger.debug("Going to create DB schema '{}' if not exists.", schemaName);
+                log.debug("Going to create DB schema '{}' if not exists.", schemaName);
                 statement.execute("create schema if not exists " + schemaName);
             } catch (SQLException e) {
                 throw new RuntimeException("Failed to create schema '" + schemaName + "'", e);

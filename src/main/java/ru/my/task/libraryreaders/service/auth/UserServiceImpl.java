@@ -1,7 +1,6 @@
 package ru.my.task.libraryreaders.service.auth;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,9 +16,8 @@ import java.util.List;
 
 @Service
 @Lazy
+@Slf4j
 public class UserServiceImpl implements UserService {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -44,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
         User registeredUser = userRepository.save(user);
 
-        logger.info("IN register - user: {} successfully registered", registeredUser);
+        log.info("IN register - user: {} successfully registered", registeredUser);
 
         return registeredUser;
     }
@@ -52,14 +50,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         List<User> result = userRepository.findAll();
-        logger.info("IN getAll - {} users found", result.size());
+        log.info("IN getAll - {} users found", result.size());
         return result;
     }
 
     @Override
     public User findByUsername(String username) {
         User result = userRepository.findByUsername(username);
-        logger.info("IN findByUsername - user: {} found by username: {}", result, username);
+        log.info("IN findByUsername - user: {} found by username: {}", result, username);
         return result;
     }
 
@@ -68,17 +66,17 @@ public class UserServiceImpl implements UserService {
         User result = userRepository.findById(id).orElse(null);
 
         if (result == null) {
-            logger.warn("IN findById - no user found by id: {}", id);
+            log.warn("IN findById - no user found by id: {}", id);
             return null;
         }
 
-        logger.info("IN findById - user: {} found by id: {}", result);
+        log.info("IN findById - user: {} found by id: {}", result);
         return result;
     }
 
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
-        logger.info("IN delete - user with id: {} successfully deleted");
+        log.info("IN delete - user with id: {} successfully deleted");
     }
 }

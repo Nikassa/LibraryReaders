@@ -1,7 +1,6 @@
 package ru.my.task.libraryreaders.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,9 +14,9 @@ import ru.my.task.libraryreaders.service.auth.UserService;
 
 @Service
 @Lazy
+@Slf4j
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     private final UserService userService;
 
     @Autowired
@@ -34,7 +33,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
 
         JwtUser jwtUser = JwtUserFactory.create(user);
-        logger.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
+        log.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
         return jwtUser;
     }
 }

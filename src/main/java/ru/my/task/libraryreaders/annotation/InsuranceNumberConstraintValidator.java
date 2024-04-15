@@ -1,7 +1,6 @@
 package ru.my.task.libraryreaders.annotation;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -10,9 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class InsuranceNumberConstraintValidator implements ConstraintValidator<InsuranceNumber, String> {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @Override
     public boolean isValid(String insuranceNumberField, ConstraintValidatorContext cxt) {
@@ -47,7 +45,7 @@ public class InsuranceNumberConstraintValidator implements ConstraintValidator<I
                     .boxed()
                     .collect(Collectors.toList());
         } catch (NumberFormatException | NullPointerException ex) {
-            logger.error("Unable to parse insuranceNumber: " + inputString, ex);
+            log.error("Unable to parse insuranceNumber: " + inputString, ex);
             throw ex;
         } finally {
             return convertedInputString;
