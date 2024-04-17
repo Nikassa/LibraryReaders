@@ -1,4 +1,4 @@
-package ru.my.task.libraryreaders.dto.auth;
+package ru.my.task.libraryreaders.security.service.dto;
 
 public class AuthenticationRequestDTO {
 

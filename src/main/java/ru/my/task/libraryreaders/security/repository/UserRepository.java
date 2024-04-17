@@ -1,7 +1,7 @@
-package ru.my.task.libraryreaders.repository.auth;
+package ru.my.task.libraryreaders.security.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.my.task.libraryreaders.model.auth.User;
+import ru.my.task.libraryreaders.security.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

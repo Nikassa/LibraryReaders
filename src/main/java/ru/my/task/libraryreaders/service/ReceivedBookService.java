@@ -7,8 +7,8 @@ import ru.my.task.libraryreaders.exceptions.ReaderCardException;
 import ru.my.task.libraryreaders.exceptions.ReceivedBookException;
 import ru.my.task.libraryreaders.model.ReaderCard;
 import ru.my.task.libraryreaders.model.ReceivedBook;
-import ru.my.task.libraryreaders.model.ReceivedBookDTO;
-import ru.my.task.libraryreaders.model.ReceivedBookView;
+import ru.my.task.libraryreaders.service.dto.ReceivedBookDTO;
+import ru.my.task.libraryreaders.service.view.ReceivedBookView;
 import ru.my.task.libraryreaders.repository.ReaderCardRepository;
 import ru.my.task.libraryreaders.repository.ReceivedBookRepository;
 

@@ -486,7 +486,7 @@
 					"response": []
 				},
 				{
-					"name": "Authorization (для всех - список пациентов)",
+					"name": "Authorization (для всех - список карт читателей)",
 					"request": {
 						"method": "GET",
 						"header": [

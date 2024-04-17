@@ -1,4 +1,4 @@
-package ru.my.task.libraryreaders.model.auth;
+package ru.my.task.libraryreaders.security.model;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

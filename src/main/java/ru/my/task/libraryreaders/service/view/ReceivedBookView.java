@@ -1,4 +1,4 @@
-package ru.my.task.libraryreaders.model;
+package ru.my.task.libraryreaders.service.view;
 
 import lombok.Builder;
 import lombok.Data;

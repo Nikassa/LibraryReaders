@@ -1,7 +1,7 @@
-package ru.my.task.libraryreaders.dto.auth;
+package ru.my.task.libraryreaders.security.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import ru.my.task.libraryreaders.model.auth.User;
+import ru.my.task.libraryreaders.security.model.User;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTO {

@@ -8,6 +8,10 @@ import ru.my.task.libraryreaders.exceptions.ReceivedBookException;
 import ru.my.task.libraryreaders.model.*;
 import ru.my.task.libraryreaders.repository.ReaderCardRepository;
 import ru.my.task.libraryreaders.repository.ReceivedBookRepository;
+import ru.my.task.libraryreaders.service.dto.ReaderCardDTO;
+import ru.my.task.libraryreaders.service.dto.ReceivedBookDTO;
+import ru.my.task.libraryreaders.service.view.ReaderCardView;
+import ru.my.task.libraryreaders.service.view.ReceivedBookView;
 
 import java.util.ArrayList;
 import java.util.Collections;

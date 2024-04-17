@@ -1,6 +1,6 @@
-package ru.my.task.libraryreaders.service.auth;
+package ru.my.task.libraryreaders.security.service;
 
-import ru.my.task.libraryreaders.model.auth.User;
+import ru.my.task.libraryreaders.security.model.User;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 @Configuration
 public class LiquibaseConfiguration {
 
-    @Value("${spring.liquibase.master-path}")
+    @Value("${spring.liquibase.change-log}")
     private String changeLogPath;
 
     @Bean

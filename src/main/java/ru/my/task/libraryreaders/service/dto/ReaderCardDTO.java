@@ -1,4 +1,4 @@
-package ru.my.task.libraryreaders.model;
+package ru.my.task.libraryreaders.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

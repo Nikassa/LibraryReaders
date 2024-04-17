@@ -2,9 +2,9 @@ package ru.my.task.libraryreaders.security.jwt;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import ru.my.task.libraryreaders.model.auth.Role;
-import ru.my.task.libraryreaders.model.auth.Status;
-import ru.my.task.libraryreaders.model.auth.User;
+import ru.my.task.libraryreaders.security.model.Role;
+import ru.my.task.libraryreaders.security.model.Status;
+import ru.my.task.libraryreaders.security.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

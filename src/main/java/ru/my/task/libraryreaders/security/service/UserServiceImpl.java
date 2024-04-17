@@ -1,21 +1,19 @@
-package ru.my.task.libraryreaders.service.auth;
+package ru.my.task.libraryreaders.security.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.my.task.libraryreaders.model.auth.Role;
-import ru.my.task.libraryreaders.model.auth.Status;
-import ru.my.task.libraryreaders.model.auth.User;
-import ru.my.task.libraryreaders.repository.auth.RoleRepository;
-import ru.my.task.libraryreaders.repository.auth.UserRepository;
+import ru.my.task.libraryreaders.security.model.Role;
+import ru.my.task.libraryreaders.security.model.Status;
+import ru.my.task.libraryreaders.security.model.User;
+import ru.my.task.libraryreaders.security.repository.RoleRepository;
+import ru.my.task.libraryreaders.security.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Lazy
 @Slf4j
 public class UserServiceImpl implements UserService {
 

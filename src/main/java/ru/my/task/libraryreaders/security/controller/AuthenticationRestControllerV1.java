@@ -1,4 +1,4 @@
-package ru.my.task.libraryreaders.controller.auth;
+package ru.my.task.libraryreaders.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.my.task.libraryreaders.dto.auth.AuthenticationRequestDTO;
-import ru.my.task.libraryreaders.model.auth.User;
+import ru.my.task.libraryreaders.security.service.dto.AuthenticationRequestDTO;
+import ru.my.task.libraryreaders.security.model.User;
 import ru.my.task.libraryreaders.security.jwt.JwtTokenProvider;
-import ru.my.task.libraryreaders.service.auth.UserService;
+import ru.my.task.libraryreaders.security.service.UserService;
 
 import java.util.HashMap;
 import java.util.Map;
