@@ -7,10 +7,10 @@ import ru.my.task.libraryreaders.exceptions.ReaderCardException;
 import ru.my.task.libraryreaders.exceptions.ReceivedBookException;
 import ru.my.task.libraryreaders.model.ReaderCard;
 import ru.my.task.libraryreaders.model.ReceivedBook;
-import ru.my.task.libraryreaders.service.dto.ReceivedBookDTO;
-import ru.my.task.libraryreaders.service.view.ReceivedBookView;
 import ru.my.task.libraryreaders.repository.ReaderCardRepository;
 import ru.my.task.libraryreaders.repository.ReceivedBookRepository;
+import ru.my.task.libraryreaders.service.dto.ReceivedBookDTO;
+import ru.my.task.libraryreaders.service.view.ReceivedBookView;
 
 import java.util.Optional;
 
@@ -37,12 +37,7 @@ public class ReceivedBookService {
         if (!readerCardFromRepository.isPresent()) {
             throw new ReaderCardException("Cannot find ReaderCard with id: ", dto.getReaderCardId());
         }
-        ReceivedBook receivedBookForSave = ReceivedBook.builder()
-                .bookName(dto.getBookName())
-                .returned(dto.getReturned())
-                .dateBookReceived(dto.getDateBookReceived())
-                .readerCardId(readerCardFromRepository.get())
-                .build();
+        ReceivedBook receivedBookForSave = fromDto(dto, readerCardFromRepository.get());
         ReceivedBook savedReceivedBook = receivedBookRepository.save(receivedBookForSave);
         return toView(savedReceivedBook);
     }
@@ -56,13 +51,8 @@ public class ReceivedBookService {
         if (!readerCardFromRepository.isPresent()) {
             throw new ReaderCardException("Cannot find ReaderCard with id: ", dto.getReaderCardId());
         }
-        ReceivedBook receivedBookForSave = ReceivedBook.builder()
-                .id(id)
-                .bookName(dto.getBookName())
-                .returned(dto.getReturned())
-                .dateBookReceived(dto.getDateBookReceived())
-                .readerCardId(readerCardFromRepository.get())
-                .build();
+        ReceivedBook receivedBookForSave = fromDto(dto, readerCardFromRepository.get());
+        receivedBookForSave.setId(id);
         ReceivedBook savedReceivedBook = receivedBookRepository.save(receivedBookForSave);
         return toView(savedReceivedBook);
     }
@@ -86,5 +76,14 @@ public class ReceivedBookService {
                 .readerCardId(readerCardReceivedBooks.getReaderCardId().getId())
                 .build();
 
+    }
+
+    private ReceivedBook fromDto(ReceivedBookDTO receivedBookDTO, ReaderCard readerCardFromRepository) {
+        return ReceivedBook.builder()
+                .bookName(receivedBookDTO.getBookName())
+                .returned(receivedBookDTO.getReturned())
+                .dateBookReceived(receivedBookDTO.getDateBookReceived())
+                .readerCardId(readerCardFromRepository)
+                .build();
     }
 }

@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.my.task.libraryreaders.exceptions.ReaderCardException;
 import ru.my.task.libraryreaders.exceptions.ReceivedBookException;
-import ru.my.task.libraryreaders.model.*;
+import ru.my.task.libraryreaders.model.ReaderCard;
+import ru.my.task.libraryreaders.model.ReceivedBook;
 import ru.my.task.libraryreaders.repository.ReaderCardRepository;
 import ru.my.task.libraryreaders.repository.ReceivedBookRepository;
 import ru.my.task.libraryreaders.service.dto.ReaderCardDTO;
@@ -47,25 +48,13 @@ public class ReaderCardService {
     }
 
     public ReaderCardView create(ReaderCardDTO dto) {
-        ReaderCard readerCardForSave = ReaderCard.builder()
-                .lastName(dto.getLastName())
-                .firstName(dto.getFirstName())
-                .middleName(dto.getMiddleName())
-                .birthDate(dto.getBirthDate())
-                .gender(dto.getGender())
-                .insuranceNumber(dto.getInsuranceNumber())
-                .build();
+        ReaderCard readerCardForSave = fromDto(dto);
         ReaderCard savedReaderCard = readerCardRepository.saveAndFlush(readerCardForSave);
 
         List<ReceivedBook> savedReceivedBooksList = new ArrayList<>();
         if (dto.getReceivedBooks() != null) {
             savedReceivedBooksList = dto.getReceivedBooks().stream()
-                    .map(i -> ReceivedBook.builder()
-                            .bookName(i.getBookName())
-                            .returned(i.getReturned())
-                            .dateBookReceived(i.getDateBookReceived())
-                            .readerCardId(savedReaderCard)
-                            .build())
+                    .map(i -> fromDto(i, savedReaderCard))
                     .collect(Collectors.toList())
                     .stream()
                     .map(i -> receivedBookRepository.saveAndFlush(i))
@@ -91,27 +80,15 @@ public class ReaderCardService {
                 if (receivedBookFromRepository.getReaderCardId().getId() != id) {
                     throw new ReceivedBookException("ReceivedBook's ReaderCardId must be the same as the ReaderCard id:", id);
                 }
-                ReceivedBook receivedBookForSave = ReceivedBook.builder()
-                        .id(receivedBookFromRepository.getId())
-                        .bookName(receivedBookDto.getBookName())
-                        .returned(receivedBookDto.getReturned())
-                        .dateBookReceived(receivedBookDto.getDateBookReceived())
-                        .readerCardId(receivedBookFromRepository.getReaderCardId())
-                        .build();
+                ReceivedBook receivedBookForSave = fromDto(receivedBookDto, receivedBookFromRepository.getReaderCardId());
+                receivedBookForSave.setId(receivedBookFromRepository.getId());
                 ReceivedBook savedReceivedBook = receivedBookRepository.saveAndFlush(receivedBookForSave);
                 savedReceivedBooksList.add(savedReceivedBook);
             }
         }
 
-        ReaderCard readerCardForSave = ReaderCard.builder()
-                .id(id)
-                .lastName(dto.getLastName())
-                .firstName(dto.getFirstName())
-                .middleName(dto.getMiddleName())
-                .birthDate(dto.getBirthDate())
-                .gender(dto.getGender())
-                .insuranceNumber(dto.getInsuranceNumber())
-                .build();
+        ReaderCard readerCardForSave = fromDto(dto);
+        readerCardForSave.setId(id);
         ReaderCard savedReaderCard = readerCardRepository.save(readerCardForSave);
         return toView(savedReaderCard, savedReceivedBooksList);
     }
@@ -156,6 +133,26 @@ public class ReaderCardService {
                 .gender(readerCard.getGender())
                 .insuranceNumber(readerCard.getInsuranceNumber())
                 .receivedBooks(toView(receivedBooksByReaderCardId))
+                .build();
+    }
+
+    private ReaderCard fromDto(ReaderCardDTO readerCardDTO) {
+        return ReaderCard.builder()
+                .lastName(readerCardDTO.getLastName())
+                .firstName(readerCardDTO.getFirstName())
+                .middleName(readerCardDTO.getMiddleName())
+                .birthDate(readerCardDTO.getBirthDate())
+                .gender(readerCardDTO.getGender())
+                .insuranceNumber(readerCardDTO.getInsuranceNumber())
+                .build();
+    }
+
+    private ReceivedBook fromDto(ReceivedBookDTO receivedBookDTO, ReaderCard readerCardFromRepository) {
+        return ReceivedBook.builder()
+                .bookName(receivedBookDTO.getBookName())
+                .returned(receivedBookDTO.getReturned())
+                .dateBookReceived(receivedBookDTO.getDateBookReceived())
+                .readerCardId(readerCardFromRepository)
                 .build();
     }
 }
