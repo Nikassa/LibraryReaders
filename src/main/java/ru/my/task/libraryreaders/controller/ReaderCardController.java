@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.my.task.libraryreaders.controller.util.SwaggerDocuments;
 import ru.my.task.libraryreaders.exceptions.ReaderCardException;
 import ru.my.task.libraryreaders.exceptions.ReceivedBookException;
+import ru.my.task.libraryreaders.service.ReaderCardService;
 import ru.my.task.libraryreaders.service.dto.ReaderCardDTO;
 import ru.my.task.libraryreaders.service.view.ReaderCardView;
-import ru.my.task.libraryreaders.service.ReaderCardService;
 
 import javax.validation.Valid;
 import java.util.List;
